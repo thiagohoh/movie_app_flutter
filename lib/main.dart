@@ -1,3 +1,4 @@
+import 'package:appmoove_mobile_test/pages/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,19 +11,12 @@ class MovieApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Movie',
+      initialRoute: '/home',
       theme: ThemeData(
-
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
       ),
-      home:  Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title:  const Text("Movies"),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      routes: {'/home': (context) => const Dashboard()},
     );
   }
 }
-
-
