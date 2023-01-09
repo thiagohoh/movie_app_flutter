@@ -1,3 +1,4 @@
+import 'package:appmoove_mobile_test/components/movie_image.dart';
 import 'package:flutter/material.dart';
 
 class FullCard extends StatelessWidget {
@@ -25,20 +26,15 @@ class FullCard extends StatelessWidget {
           shadowColor: Colors.redAccent,
           child: SizedBox(
             width: double.infinity,
-            height: double.infinity,
+            height: 200,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ClipOval(
-                  child: SizedBox.fromSize(
-                    size: const Size.fromRadius(150),
-                    child: imageWidget,
-                  ),
-                ),
+               MovieImage(image: imageWidget),
                 Text(
                   title,
                   style: const TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.w500),
+                      fontSize: 16, fontWeight: FontWeight.w500),
                 )
               ],
             ),
