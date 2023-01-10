@@ -9,7 +9,7 @@ class MovieImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: SizedBox.fromSize(
-        size: const Size.fromRadius(90),
+        size: const Size.fromRadius(75),
         child: image,
       ),
     );
