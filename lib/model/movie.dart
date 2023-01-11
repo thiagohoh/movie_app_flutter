@@ -53,7 +53,7 @@ class Movie {
         homepage: json['homepage'],
         id: json['id'],
         imdbId: json['imdb_id'],
-        genres: json['genres'].map((e) => Genres.fromJson(e)),
+        genres: List<Genres>.from(json['genres'].map((e) => Genres.fromJson(e)).toList()),
         originalLanguage: json['original_language'],
         originalTitle: json['original_title'],
         overview: json['overview'],
@@ -66,7 +66,7 @@ class Movie {
         tagline: json['tagline'],
         title: json['title'],
         video: json['video'],
-        voteAverage: json['vote_average'],
+        voteAverage: json['vote_average'].toDouble(),
         voteCount: json['vote_count'],
       );
 }
