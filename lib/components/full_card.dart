@@ -1,13 +1,15 @@
-import 'package:appmoove_mobile_test/components/movie_image.dart';
+import 'package:appmoove_mobile_test/components/glassmorph.dart';
+import 'package:appmoove_mobile_test/components/image_display.dart';
+import 'package:appmoove_mobile_test/components/info_box.dart';
+import 'package:appmoove_mobile_test/constants/constants.dart';
+import 'package:appmoove_mobile_test/model/result.dart';
 import 'package:flutter/material.dart';
 
 class FullCard extends StatelessWidget {
-  const FullCard(
-      {Key? key, required this.title, required this.imageWidget, this.onClick})
+  const FullCard({Key? key, required this.result, this.onClick})
       : super(key: key);
 
-  final String title;
-  final Widget imageWidget;
+  final Result result;
   final Function? onClick;
 
   @override
@@ -18,28 +20,38 @@ class FullCard extends StatelessWidget {
         onTap: () {
           onClick?.call();
         },
-        child: Card(
-          borderOnForeground: true,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-              side: const BorderSide(color: Colors.red)),
-          shadowColor: Colors.redAccent,
-          child: SizedBox(
+        child: Stack(children: [
+          SizedBox(
             width: double.infinity,
-            height: 200,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-               MovieImage(image: imageWidget),
-                Text(
-                  title,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w500),
-                )
-              ],
-            ),
+            height: 150,
+            child: Image.network(
+                "${Constants.baseImageUrl}${Constants.imageOriginalEndpoint}${result.backdropPath}"),
           ),
-        ),
+          Glassmorph(
+              blur: 10,
+              opacity: 0.5,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Wrap(children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InfoBox(text: result.title, fontSize: 18),
+                        InfoBox(text: result.releaseDate)
+                      ],
+                    )
+                  ]),
+                  ClipOval(
+                      child: SizedBox.fromSize(
+                    size: const Size.fromRadius(75),
+                    child: ImageDisplay(
+                        url:
+                            "${Constants.baseImageUrl}${Constants.imageOriginalEndpoint}${result.posterPath}"),
+                  ))
+                ],
+              )),
+        ]),
       ),
     );
   }
