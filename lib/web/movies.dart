@@ -4,6 +4,7 @@ import 'package:appmoove_mobile_test/constants/constants.dart';
 import 'package:appmoove_mobile_test/model/movie.dart';
 import 'package:appmoove_mobile_test/model/popular_movies.dart';
 import 'package:appmoove_mobile_test/model/result.dart';
+import 'package:appmoove_mobile_test/model/video.dart';
 import 'package:http/http.dart';
 
 Future<Movie> getMovie({int id = 1}) async {
@@ -42,6 +43,19 @@ Future<Result> getTopOneTrending() async {
     final Map<String, dynamic> res = jsonDecode(response.body);
     final Result result = Result.fromJson(res['results'][0]);
     return result;
+  } else {
+    throw Future.error(Exception("Error on api call"));
+  }
+}
+
+Future<Video> getVideo({required int id}) async {
+  final response = await get(Uri.parse(
+      "${Constants.baseUrl}${Constants.movieEndpoint}$id${Constants.videos}${Constants.apiKeyParam}${Constants.apiKey}"));
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> res = jsonDecode(response.body);
+    final Video video = Video.fromJson(res['results'][0]);
+    return video;
   } else {
     throw Future.error(Exception("Error on api call"));
   }

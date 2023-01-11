@@ -10,4 +10,6 @@ class Constants {
   static const baseImageUrl = "https://image.tmdb.org/t/p/";
   static const imageOriginalEndpoint = "original";
   static const imageW500Endpoint = "w500";
+  static const videos = "/videos";
+  static const youtube = "https://www.youtube.com/watch?v=";
 }
