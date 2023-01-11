@@ -1,5 +1,5 @@
-import 'package:appmoove_mobile_test/components/full_card.dart';
-import 'package:appmoove_mobile_test/components/small_movie_display.dart';
+import 'package:appmoove_mobile_test/components/movie_list.dart';
+import 'package:appmoove_mobile_test/components/trending_movie.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -14,16 +14,9 @@ class Dashboard extends StatelessWidget {
       ),
       body: SafeArea(
           child: Column(
-        children: [
-          FullCard(
-              title: "Title",
-              imageWidget: Image.network(
-                  "https://image.tmdb.org/t/p/original/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg")),
-          SmallMovieDisplay(
-            image: Image.network(
-                "https://image.tmdb.org/t/p/original/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg"),
-            title: "movie title",
-          )
+        children: const [
+          TrendingMovie(),
+          MovieList(),
         ],
       )),
     );
