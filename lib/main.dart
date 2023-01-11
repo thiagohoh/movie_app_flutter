@@ -13,12 +13,11 @@ class MovieApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/home',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
       debugShowCheckedModeBanner: false,
-      routes: {'/home': (context) => const Dashboard()},
+      home: const Dashboard(),
     );
   }
 }
